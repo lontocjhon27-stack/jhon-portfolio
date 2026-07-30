@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Websites — Jhon Lontoc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#D4A843;--gold2:#F0C76A;--black:#080808;--dark:#111;--dark2:#181818;--border:rgba(212,168,67,.18);--border2:rgba(212,168,67,.08);--text:#a8a090;--light:#ede8df;--white:#fafaf8;--muted:#6b6456}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--black);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden;font-size:16px;line-height:1.65;-webkit-tap-highlight-color:transparent}
+img{display:block;max-width:100%}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:#8B6914}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,8,.97);backdrop-filter:blur(16px);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border2)}
+@media(min-width:768px){nav{padding:14px 48px}}
+.logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--white);text-decoration:none}
+.logo span{color:var(--gold)}
+.nav-links{display:none;gap:28px;list-style:none}
+@media(min-width:768px){.nav-links{display:flex}.nav-cta{display:inline-flex !important}}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;transition:color .25s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--black);padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;display:none;align-items:center;min-height:40px;transition:background .25s}
+.nav-cta:hover{background:var(--gold2)}
+.back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 0;transition:color .2s;min-height:44px}
+.back-btn:hover,.back-btn:active{color:var(--gold)}
+.back-btn svg{width:16px;height:16px;flex-shrink:0}
+
+.page-header{padding:100px 24px 40px}
+@media(min-width:768px){.page-header{padding:100px 48px 48px}}
+.s-tag{display:inline-flex;align-items:center;gap:10px;margin-bottom:12px}
+.s-tag-line{width:24px;height:1px;background:var(--gold)}
+.s-tag-text{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(26px,6vw,52px);font-weight:700;color:var(--white);line-height:1.05}
+.s-title em{font-style:italic;color:var(--gold)}
+.page-desc{color:var(--muted);font-size:14px;margin-top:12px;line-height:1.7;max-width:520px}
+
+/* ── SITES GRID ── */
+.sites-section{padding:0 24px 80px}
+@media(min-width:768px){.sites-section{padding:0 48px 80px}}
+.sites-grid{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:768px){.sites-grid{grid-template-columns:1fr 1fr;gap:28px}}
+
+/* ── SITE CARD ── */
+.site-card{background:var(--dark2);border:1px solid var(--border2);transition:border-color .25s}
+.site-card:hover{border-color:var(--border)}
+
+/* Browser bar */
+.browser-bar{background:#1c1c1c;padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.06)}
+.dots{display:flex;gap:5px;flex-shrink:0}
+.dots span{width:11px;height:11px;border-radius:50%;display:block}
+.d-r{background:#ff5f57}.d-y{background:#febc2e}.d-g{background:#28c840}
+.url-bar{flex:1;background:#2a2a2a;border-radius:5px;padding:5px 10px;display:flex;align-items:center;gap:7px;overflow:hidden;min-width:0}
+.url-bar svg{flex-shrink:0;opacity:.3;width:9px;height:9px}
+.url-text{font-size:10px;color:rgba(255,255,255,.45);font-family:monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.open-link{flex-shrink:0;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:5px 10px;border:1px solid var(--border);transition:background .2s,color .2s;white-space:nowrap;min-height:30px;display:inline-flex;align-items:center}
+.open-link:hover,.open-link:active{background:var(--gold);color:var(--black)}
+
+/* Preview area */
+.preview-area{position:relative;background:#0e0e0e;overflow:hidden}
+/* Mobile: show info card, no iframe */
+.site-info{padding:24px 20px;display:flex;flex-direction:column;gap:14px}
+.site-icon{font-size:36px;line-height:1}
+.site-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--white);font-style:italic}
+.site-tags{display:flex;flex-wrap:wrap;gap:6px}
+.site-tag{background:rgba(212,168,67,.06);border:1px solid var(--border2);padding:4px 10px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.site-desc{font-size:13px;color:var(--muted);line-height:1.65}
+.visit-btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--black);padding:13px 20px;font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;min-height:48px;transition:background .2s;align-self:flex-start}
+.visit-btn:hover,.visit-btn:active{background:var(--gold2)}
+
+/* Desktop: show lazy iframe */
+.iframe-area{display:none;position:relative;height:440px}
+.iframe-placeholder{position:absolute;inset:0;background:var(--dark2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;cursor:pointer;transition:background .2s}
+.iframe-placeholder:hover{background:#1f1f1f}
+.load-icon{width:48px;height:48px;border:2px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:border-color .2s}
+.iframe-placeholder:hover .load-icon{border-color:var(--gold)}
+.load-icon svg{width:20px;height:20px;color:var(--gold)}
+.load-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.load-sub{font-size:10px;color:var(--muted);opacity:.6}
+.browser-iframe{width:1280px;height:880px;border:none;display:block;transform-origin:top left;background:#fff}
+/* When loaded */
+.iframe-area.loaded .iframe-placeholder{display:none}
+
+@media(min-width:768px){
+  .site-info{display:none}
+  .iframe-area{display:block}
+}
+
+/* Label row */
+.site-label-row{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--border2)}
+.site-label-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white)}
+.site-label-tag{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-top:3px}
+.live-badge{display:inline-flex;align-items:center;gap:5px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#4ade80;font-weight:700;flex-shrink:0}
+.live-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite;display:block}
+
+/* ── CONTACT ── */
+.contact-strip{background:var(--gold);padding:40px 24px;text-align:center}
+@media(min-width:768px){.contact-strip{padding:48px 48px;display:flex;align-items:center;justify-content:space-between;text-align:left}}
+.contact-strip h3{font-family:'Playfair Display',serif;font-size:clamp(20px,4vw,32px);font-weight:700;color:var(--black);font-style:italic;margin-bottom:12px}
+@media(min-width:768px){.contact-strip h3{margin-bottom:0}}
+.contact-strip a{display:inline-flex;align-items:center;gap:8px;background:var(--black);color:var(--gold);padding:14px 24px;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;min-height:50px;transition:background .2s;white-space:nowrap}
+.contact-strip a:hover{background:#111}
+
+footer{background:var(--black);border-top:1px solid var(--border2);padding:20px 24px;display:flex;flex-direction:column;gap:8px;text-align:center}
+@media(min-width:768px){footer{flex-direction:row;align-items:center;justify-content:space-between;padding:20px 48px;text-align:left}}
+.footer-logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--white);text-decoration:none}
+.footer-logo span{color:var(--gold)}
+footer p{font-size:11px;color:var(--muted)}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="portfolio.html" class="logo">J<span>.</span>Lontoc</a>
+  <ul class="nav-links">
+    <li><a href="portfolio-landing.html">Landing Pages</a></li>
+    <li><a href="portfolio-websites.html" class="active">Websites</a></li>
+    <li><a href="portfolio-reels.html">Reels</a></li>
+    <li><a href="portfolio-work.html">Work</a></li>
+  </ul>
+  <a href="https://calendly.com/lontocjhon27/30min" target="_blank" rel="noopener" class="nav-cta">Book a Call</a>
+  <a href="portfolio.html" class="back-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Home
+  </a>
+</nav>
+
+<div class="page-header">
+  <div class="s-tag"><div class="s-tag-line"></div><span class="s-tag-text">Live Builds</span></div>
+  <h1 class="s-title">Websites &amp; <em>web apps</em></h1>
+  <p class="page-desc">Live sites built on WordPress, GoHighLevel, and Skool. On desktop, tap a card to load a live preview. On mobile, tap Open to visit directly.</p>
+</div>
+
+<div class="sites-section">
+  <div class="sites-grid">
+
+    <!-- Golden Rose Med Spa -->
+    <div class="site-card">
+      <div class="browser-bar">
+        <div class="dots"><span class="d-r"></span><span class="d-y"></span><span class="d-g"></span></div>
+        <div class="url-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span class="url-text">goldenrosemedspa.com</span></div>
+        <a href="https://goldenrosemedspa.com/" target="_blank" rel="noopener" class="open-link">↗ Open</a>
+      </div>
+      <div class="preview-area">
+        <div class="site-info">
+          <div class="site-icon">🌹</div>
+          <div class="site-name">Golden Rose Med Spa</div>
+          <div class="site-tags"><span class="site-tag">WordPress</span><span class="site-tag">Medical Spa</span></div>
+          <div class="site-desc">Full WordPress site for a medical spa & wellness brand. Includes service pages, booking integration, and social media content strategy.</div>
+          <a href="https://goldenrosemedspa.com/" target="_blank" rel="noopener" class="visit-btn">Visit Live Site →</a>
+        </div>
+        <div class="iframe-area" id="ia-1">
+          <div class="iframe-placeholder" onclick="loadPreview('ia-1','https://goldenrosemedspa.com/')">
+            <div class="load-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+            <div class="load-label">Load Preview</div>
+            <div class="load-sub">Click to embed live site</div>
+          </div>
+          <iframe class="browser-iframe" title="Golden Rose Med Spa"></iframe>
+        </div>
+      </div>
+      <div class="site-label-row">
+        <div><div class="site-label-name">Golden Rose Med Spa</div><div class="site-label-tag">WordPress · Medical Spa</div></div>
+        <span class="live-badge">Live</span>
+      </div>
+    </div>
+
+    <!-- ZJ Security Film -->
+    <div class="site-card">
+      <div class="browser-bar">
+        <div class="dots"><span class="d-r"></span><span class="d-y"></span><span class="d-g"></span></div>
+        <div class="url-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span class="url-text">zjsecurityfilmsolution.com</span></div>
+        <a href="https://zjsecurityfilmsolution.com/" target="_blank" rel="noopener" class="open-link">↗ Open</a>
+      </div>
+      <div class="preview-area">
+        <div class="site-info">
+          <div class="site-icon">🔒</div>
+          <div class="site-name">ZJ Security Film Solution</div>
+          <div class="site-tags"><span class="site-tag">WordPress</span><span class="site-tag">Dayton, OH</span></div>
+          <div class="site-desc">Business website for a security film installation company in Dayton, Ohio. Built with WordPress featuring service areas, gallery, and contact forms.</div>
+          <a href="https://zjsecurityfilmsolution.com/" target="_blank" rel="noopener" class="visit-btn">Visit Live Site →</a>
+        </div>
+        <div class="iframe-area" id="ia-2">
+          <div class="iframe-placeholder" onclick="loadPreview('ia-2','https://zjsecurityfilmsolution.com/')">
+            <div class="load-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+            <div class="load-label">Load Preview</div>
+            <div class="load-sub">Click to embed live site</div>
+          </div>
+          <iframe class="browser-iframe" title="ZJ Security Film Solution"></iframe>
+        </div>
+      </div>
+      <div class="site-label-row">
+        <div><div class="site-label-name">ZJ Security Film Solution</div><div class="site-label-tag">WordPress · Dayton, OH</div></div>
+        <span class="live-badge">Live</span>
+      </div>
+    </div>
+
+    <!-- The Fulltime CEO -->
+    <div class="site-card">
+      <div class="browser-bar">
+        <div class="dots"><span class="d-r"></span><span class="d-y"></span><span class="d-g"></span></div>
+        <div class="url-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span class="url-text">thefulltimeceo.com</span></div>
+        <a href="https://thefulltimeceo.com/" target="_blank" rel="noopener" class="open-link">↗ Open</a>
+      </div>
+      <div class="preview-area">
+        <div class="site-info">
+          <div class="site-icon">💼</div>
+          <div class="site-name">The Fulltime CEO</div>
+          <div class="site-tags"><span class="site-tag">GoHighLevel</span><span class="site-tag">Business Coaching</span></div>
+          <div class="site-desc">Business coaching platform built on GoHighLevel. Includes funnels, automations, CRM setup, and community integrations for a 7-figure coaching brand.</div>
+          <a href="https://thefulltimeceo.com/" target="_blank" rel="noopener" class="visit-btn">Visit Live Site →</a>
+        </div>
+        <div class="iframe-area" id="ia-3">
+          <div class="iframe-placeholder" onclick="loadPreview('ia-3','https://thefulltimeceo.com/')">
+            <div class="load-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+            <div class="load-label">Load Preview</div>
+            <div class="load-sub">Click to embed live site</div>
+          </div>
+          <iframe class="browser-iframe" title="The Fulltime CEO"></iframe>
+        </div>
+      </div>
+      <div class="site-label-row">
+        <div><div class="site-label-name">The Fulltime CEO</div><div class="site-label-tag">GoHighLevel · Business Coaching</div></div>
+        <span class="live-badge">Live</span>
+      </div>
+    </div>
+
+    <!-- Slay The Season Summit -->
+    <div class="site-card">
+      <div class="browser-bar">
+        <div class="dots"><span class="d-r"></span><span class="d-y"></span><span class="d-g"></span></div>
+        <div class="url-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span class="url-text">slaytheseasonsummit.com</span></div>
+        <a href="https://slaytheseasonsummit.com/summit-registration" target="_blank" rel="noopener" class="open-link">↗ Open</a>
+      </div>
+      <div class="preview-area">
+        <div class="site-info">
+          <div class="site-icon">✨</div>
+          <div class="site-name">Slay The Season Summit</div>
+          <div class="site-tags"><span class="site-tag">GoHighLevel</span><span class="site-tag">Landing Page</span></div>
+          <div class="site-desc">High-converting summit registration landing page built on GoHighLevel for the Slay The Season event. Optimized for lead capture and registration flow.</div>
+          <a href="https://slaytheseasonsummit.com/summit-registration" target="_blank" rel="noopener" class="visit-btn">Visit Live Site →</a>
+        </div>
+        <div class="iframe-area" id="ia-4">
+          <div class="iframe-placeholder" onclick="loadPreview('ia-4','https://slaytheseasonsummit.com/summit-registration')">
+            <div class="load-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+            <div class="load-label">Load Preview</div>
+            <div class="load-sub">Click to embed live site</div>
+          </div>
+          <iframe class="browser-iframe" title="Slay The Season Summit"></iframe>
+        </div>
+      </div>
+      <div class="site-label-row">
+        <div><div class="site-label-name">Slay The Season Summit</div><div class="site-label-tag">GoHighLevel · Landing Page</div></div>
+        <span class="live-badge">Live</span>
+      </div>
+    </div>
+
+    <!-- AMP Music Biz -->
+    <div class="site-card">
+      <div class="browser-bar">
+        <div class="dots"><span class="d-r"></span><span class="d-y"></span><span class="d-g"></span></div>
+        <div class="url-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span class="url-text">skool.com/ampmusicbiz</span></div>
+        <a href="https://www.skool.com/ampmusicbiz" target="_blank" rel="noopener" class="open-link">↗ Open</a>
+      </div>
+      <div class="preview-area">
+        <div class="site-info">
+          <div class="site-icon">🎵</div>
+          <div class="site-name">AMP Music Biz</div>
+          <div class="site-tags"><span class="site-tag">Skool</span><span class="site-tag">Community</span></div>
+          <div class="site-desc">Skool community portal for a music business education brand. Full community setup including onboarding, modules, and member engagement systems.</div>
+          <a href="https://www.skool.com/ampmusicbiz" target="_blank" rel="noopener" class="visit-btn">Visit Community →</a>
+        </div>
+        <div class="iframe-area" id="ia-5">
+          <div class="iframe-placeholder" onclick="loadPreview('ia-5','https://www.skool.com/ampmusicbiz')">
+            <div class="load-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+            <div class="load-label">Load Preview</div>
+            <div class="load-sub">Click to embed live site</div>
+          </div>
+          <iframe class="browser-iframe" title="AMP Music Biz"></iframe>
+        </div>
+      </div>
+      <div class="site-label-row">
+        <div><div class="site-label-name">AMP Music Biz</div><div class="site-label-tag">Skool · Community Portal</div></div>
+        <span class="live-badge">Live</span>
+      </div>
+    </div>
+
+    <!-- Fulltime CEO Collective -->
+    <div class="site-card">
+      <div class="browser-bar">
+        <div class="dots"><span class="d-r"></span><span class="d-y"></span><span class="d-g"></span></div>
+        <div class="url-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span class="url-text">skool.com/fulltimeceo</span></div>
+        <a href="https://www.skool.com/fulltimeceo/about" target="_blank" rel="noopener" class="open-link">↗ Open</a>
+      </div>
+      <div class="preview-area">
+        <div class="site-info">
+          <div class="site-icon">🏆</div>
+          <div class="site-name">Fulltime CEO Collective</div>
+          <div class="site-tags"><span class="site-tag">Skool</span><span class="site-tag">Community</span></div>
+          <div class="site-desc">Premium Skool community for the Fulltime CEO brand. Built and managed the full community portal including content, automations, and member onboarding.</div>
+          <a href="https://www.skool.com/fulltimeceo/about?ref=72e143e1a3b64e1c9ddff084d2a5fec0" target="_blank" rel="noopener" class="visit-btn">Visit Community →</a>
+        </div>
+        <div class="iframe-area" id="ia-6">
+          <div class="iframe-placeholder" onclick="loadPreview('ia-6','https://www.skool.com/fulltimeceo/about?ref=72e143e1a3b64e1c9ddff084d2a5fec0')">
+            <div class="load-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+            <div class="load-label">Load Preview</div>
+            <div class="load-sub">Click to embed live site</div>
+          </div>
+          <iframe class="browser-iframe" title="Fulltime CEO Collective"></iframe>
+        </div>
+      </div>
+      <div class="site-label-row">
+        <div><div class="site-label-name">Fulltime CEO Collective</div><div class="site-label-tag">Skool · Community Portal</div></div>
+        <span class="live-badge">Live</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="contact-strip">
+  <h3>Need a site built or managed?</h3>
+  <a href="https://calendly.com/lontocjhon27/30min" target="_blank" rel="noopener">📅 Book a Free Call →</a>
+</div>
+
+<footer>
+  <a href="portfolio.html" class="footer-logo">J<span>.</span>Lontoc</a>
+  <p>© 2026 Jhon Rhovic B. Lontoc</p>
+</footer>
+
+<script>
+function loadPreview(id, url){
+  var area=document.getElementById(id);
+  var iframe=area.querySelector('.browser-iframe');
+  if(iframe.src&&iframe.src!=='about:blank'&&iframe.src!=='')return;
+  iframe.src=url;
+  area.classList.add('loaded');
+  // Scale to fit container
+  var w=area.offsetWidth;
+  var scale=w/1280;
+  iframe.style.transform='scale('+scale+')';
+  iframe.style.transformOrigin='top left';
+  area.style.height=Math.round(880*scale)+'px';
+  // Show blocked fallback if iframe fails
+  setTimeout(function(){
+    try{
+      var doc=iframe.contentDocument||iframe.contentWindow.document;
+      if(!doc||!doc.body||doc.body.innerHTML.trim()===''){
+        area.classList.remove('loaded');
+        // Show message instead
+        var ph=area.querySelector('.iframe-placeholder');
+        ph.innerHTML='<div style="font-size:13px;color:var(--muted);text-align:center;padding:20px;line-height:1.6">This site blocks embedding.<br><a href="'+url+'" target="_blank" style="color:var(--gold)">Open in new tab →</a></div>';
+        ph.onclick=null;
+      }
+    }catch(e){}
+  },3000);
+}
+// Recalculate scale on resize
+window.addEventListener('resize',function(){
+  document.querySelectorAll('.iframe-area.loaded').forEach(function(area){
+    var iframe=area.querySelector('.browser-iframe');
+    var w=area.offsetWidth;
+    var scale=w/1280;
+    iframe.style.transform='scale('+scale+')';
+    area.style.height=Math.round(880*scale)+'px';
+  });
+},{passive:true});
+</script>
+</body>
+</html>

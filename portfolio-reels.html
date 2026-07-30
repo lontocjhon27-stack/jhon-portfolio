@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Reels — Jhon Lontoc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#D4A843;--gold2:#F0C76A;--black:#080808;--dark:#111;--dark2:#181818;--border:rgba(212,168,67,.18);--border2:rgba(212,168,67,.08);--text:#a8a090;--light:#ede8df;--white:#fafaf8;--muted:#6b6456}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--black);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden;font-size:16px;line-height:1.65;-webkit-tap-highlight-color:transparent}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:#8B6914}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,8,.97);backdrop-filter:blur(16px);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border2)}
+@media(min-width:768px){nav{padding:14px 48px}}
+.logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--white);text-decoration:none}
+.logo span{color:var(--gold)}
+.nav-links{display:none;gap:28px;list-style:none}
+@media(min-width:768px){.nav-links{display:flex}.nav-cta{display:inline-flex !important}}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;transition:color .25s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a.active{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--black);padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;display:none;align-items:center;min-height:40px;transition:background .25s}
+.nav-cta:hover{background:var(--gold2)}
+.back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 0;transition:color .2s;min-height:44px}
+.back-btn:hover,.back-btn:active{color:var(--gold)}
+.back-btn svg{width:16px;height:16px;flex-shrink:0}
+
+/* ── PAGE HEADER ── */
+.page-header{padding:100px 24px 40px}
+@media(min-width:768px){.page-header{padding:100px 48px 48px}}
+.s-tag{display:inline-flex;align-items:center;gap:10px;margin-bottom:12px}
+.s-tag-line{width:24px;height:1px;background:var(--gold)}
+.s-tag-text{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(26px,6vw,52px);font-weight:700;color:var(--white);line-height:1.05}
+.s-title em{font-style:italic;color:var(--gold)}
+.page-desc{color:var(--muted);font-size:14px;margin-top:12px;line-height:1.7;max-width:480px}
+
+/* ── REELS GRID ── */
+.reels-section{padding:0 24px 80px}
+@media(min-width:768px){.reels-section{padding:0 48px 80px}}
+.reels-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;justify-items:center}
+@media(min-width:600px){.reels-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.reels-grid{grid-template-columns:repeat(4,1fr)}}
+
+/* ── PHONE CARD ── */
+.reel-card{width:100%;max-width:200px}
+.phone-wrap{position:relative;width:100%;aspect-ratio:9/16;max-width:200px;background:#000;border-radius:32px;border:3px solid rgba(212,168,67,.3);overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.06);transition:border-color .3s}
+.phone-wrap.playing{border-color:var(--gold)}
+.phone-notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:48px;height:5px;background:rgba(0,0,0,.7);border-radius:3px;z-index:10;pointer-events:none}
+/* Play placeholder */
+.phone-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#0f0f0f 0%,#1a1a1a 100%);cursor:pointer;transition:background .2s;z-index:5}
+.phone-placeholder:hover,.phone-placeholder:active{background:linear-gradient(135deg,#141414 0%,#202020 100%)}
+.play-ring{width:56px;height:56px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;transition:transform .2s,background .2s;background:rgba(212,168,67,.08)}
+.phone-placeholder:hover .play-ring,.phone-placeholder:active .play-ring{transform:scale(1.08);background:rgba(212,168,67,.15)}
+.play-ring svg{width:22px;height:22px;fill:var(--gold);margin-left:3px}
+.play-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+/* Active iframe */
+.phone-iframe{position:absolute;inset:0;width:100%;height:calc(100% + 48px);margin-top:-2px;border:none;display:none;z-index:4}
+.phone-iframe.active{display:block}
+/* Stop button */
+.stop-btn{position:absolute;top:10px;right:10px;z-index:20;background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.15);color:var(--white);width:32px;height:32px;border-radius:50%;display:none;align-items:center;justify-content:center;cursor:pointer;font-size:13px;transition:background .2s}
+.stop-btn.visible{display:flex}
+.stop-btn:hover{background:rgba(212,168,67,.2)}
+.reel-label{margin-top:10px;text-align:center;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* ── NOTE ── */
+.reels-note{background:rgba(212,168,67,.05);border:1px solid var(--border2);padding:14px 18px;margin-bottom:32px;display:flex;gap:10px;align-items:flex-start;border-radius:2px}
+.reels-note svg{flex-shrink:0;margin-top:2px;color:var(--gold)}
+.reels-note p{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* ── CONTACT STRIP ── */
+.contact-strip{background:var(--gold);padding:40px 24px;text-align:center}
+@media(min-width:768px){.contact-strip{padding:48px 48px;display:flex;align-items:center;justify-content:space-between;text-align:left}}
+.contact-strip h3{font-family:'Playfair Display',serif;font-size:clamp(20px,4vw,32px);font-weight:700;color:var(--black);font-style:italic;margin-bottom:12px}
+@media(min-width:768px){.contact-strip h3{margin-bottom:0}}
+.contact-strip a{display:inline-flex;align-items:center;gap:8px;background:var(--black);color:var(--gold);padding:14px 24px;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;min-height:50px;transition:background .2s;white-space:nowrap}
+.contact-strip a:hover{background:#111}
+
+/* ── FOOTER ── */
+footer{background:var(--black);border-top:1px solid var(--border2);padding:20px 24px;display:flex;flex-direction:column;gap:8px;text-align:center}
+@media(min-width:768px){footer{flex-direction:row;align-items:center;justify-content:space-between;padding:20px 48px;text-align:left}}
+.footer-logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--white);text-decoration:none}
+.footer-logo span{color:var(--gold)}
+footer p{font-size:11px;color:var(--muted)}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="portfolio.html" class="logo">J<span>.</span>Lontoc</a>
+  <ul class="nav-links">
+    <li><a href="portfolio-landing.html">Landing Pages</a></li>
+    <li><a href="portfolio-websites.html">Websites</a></li>
+    <li><a href="portfolio-reels.html" class="active">Reels</a></li>
+    <li><a href="portfolio-work.html">Work</a></li>
+  </ul>
+  <a href="https://calendly.com/lontocjhon27/30min" target="_blank" rel="noopener" class="nav-cta">Book a Call</a>
+  <a href="portfolio.html" class="back-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Home
+  </a>
+</nav>
+
+<div class="page-header">
+  <div class="s-tag"><div class="s-tag-line"></div><span class="s-tag-text">Content Reels</span></div>
+  <h1 class="s-title">My <em>reels</em></h1>
+  <p class="page-desc">Short-form content created for medical spa, wellness, and business coaching clients. Tap any reel to play.</p>
+</div>
+
+<div class="reels-section">
+
+  <div class="reels-note">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <p>Tap a reel to play it. One video loads at a time to keep things fast. Tap the × to close and save data.</p>
+  </div>
+
+  <div class="reels-grid">
+
+    <div class="reel-card" data-src="https://drive.google.com/file/d/1zzXXLiSpz7OJpDPuPjQf97XSbbofyzvB/preview">
+      <div class="phone-wrap">
+        <div class="phone-notch"></div>
+        <div class="phone-placeholder" onclick="playReel(this)">
+          <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <span class="play-label">Reel 01</span>
+        </div>
+        <iframe class="phone-iframe" title="Reel 01" allow="autoplay" allowfullscreen></iframe>
+        <button class="stop-btn" onclick="stopReel(this)" aria-label="Stop">✕</button>
+      </div>
+      <div class="reel-label">Reel 01</div>
+    </div>
+
+    <div class="reel-card" data-src="https://drive.google.com/file/d/1ezLxtlktchkmdEL6p0gKtnloFyE9wcDh/preview">
+      <div class="phone-wrap">
+        <div class="phone-notch"></div>
+        <div class="phone-placeholder" onclick="playReel(this)">
+          <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <span class="play-label">Reel 02</span>
+        </div>
+        <iframe class="phone-iframe" title="Reel 02" allow="autoplay" allowfullscreen></iframe>
+        <button class="stop-btn" onclick="stopReel(this)" aria-label="Stop">✕</button>
+      </div>
+      <div class="reel-label">Reel 02</div>
+    </div>
+
+    <div class="reel-card" data-src="https://drive.google.com/file/d/18MyTAyrtA1f9i36rJOaibf_Oi57Z6TCp/preview">
+      <div class="phone-wrap">
+        <div class="phone-notch"></div>
+        <div class="phone-placeholder" onclick="playReel(this)">
+          <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <span class="play-label">Reel 03</span>
+        </div>
+        <iframe class="phone-iframe" title="Reel 03" allow="autoplay" allowfullscreen></iframe>
+        <button class="stop-btn" onclick="stopReel(this)" aria-label="Stop">✕</button>
+      </div>
+      <div class="reel-label">Reel 03</div>
+    </div>
+
+    <div class="reel-card" data-src="https://drive.google.com/file/d/1OIW1EyGDqh32tm9NP13UV6inzQ-eBhMd/preview">
+      <div class="phone-wrap">
+        <div class="phone-notch"></div>
+        <div class="phone-placeholder" onclick="playReel(this)">
+          <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <span class="play-label">Reel 04</span>
+        </div>
+        <iframe class="phone-iframe" title="Reel 04" allow="autoplay" allowfullscreen></iframe>
+        <button class="stop-btn" onclick="stopReel(this)" aria-label="Stop">✕</button>
+      </div>
+      <div class="reel-label">Reel 04</div>
+    </div>
+
+    <div class="reel-card" data-src="https://drive.google.com/file/d/19QeoXoRMagBM9rgQngEKEmGXEm2e3Hco/preview">
+      <div class="phone-wrap">
+        <div class="phone-notch"></div>
+        <div class="phone-placeholder" onclick="playReel(this)">
+          <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <span class="play-label">Reel 05</span>
+        </div>
+        <iframe class="phone-iframe" title="Reel 05" allow="autoplay" allowfullscreen></iframe>
+        <button class="stop-btn" onclick="stopReel(this)" aria-label="Stop">✕</button>
+      </div>
+      <div class="reel-label">Reel 05</div>
+    </div>
+
+    <div class="reel-card" data-src="https://drive.google.com/file/d/16x3y-p4vCZ2e0fRhszA_BIhTVol-ILtD/preview">
+      <div class="phone-wrap">
+        <div class="phone-notch"></div>
+        <div class="phone-placeholder" onclick="playReel(this)">
+          <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <span class="play-label">Reel 06</span>
+        </div>
+        <iframe class="phone-iframe" title="Reel 06" allow="autoplay" allowfullscreen></iframe>
+        <button class="stop-btn" onclick="stopReel(this)" aria-label="Stop">✕</button>
+      </div>
+      <div class="reel-label">Reel 06</div>
+    </div>
+
+    <div class="reel-card" data-src="https://drive.google.com/file/d/1Ak7YJLmFKPrjmgC9HJC5suU-JUtziwIJ/preview">
+      <div class="phone-wrap">
+        <div class="phone-notch"></div>
+        <div class="phone-placeholder" onclick="playReel(this)">
+          <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <span class="play-label">Reel 07</span>
+        </div>
+        <iframe class="phone-iframe" title="Reel 07" allow="autoplay" allowfullscreen></iframe>
+        <button class="stop-btn" onclick="stopReel(this)" aria-label="Stop">✕</button>
+      </div>
+      <div class="reel-label">Reel 07</div>
+    </div>
+
+    <div class="reel-card" data-src="https://drive.google.com/file/d/1yhUBuKJr9ErPcJZ0pVxJGuSXZl1FwxkO/preview">
+      <div class="phone-wrap">
+        <div class="phone-notch"></div>
+        <div class="phone-placeholder" onclick="playReel(this)">
+          <div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <span class="play-label">Reel 08</span>
+        </div>
+        <iframe class="phone-iframe" title="Reel 08" allow="autoplay" allowfullscreen></iframe>
+        <button class="stop-btn" onclick="stopReel(this)" aria-label="Stop">✕</button>
+      </div>
+      <div class="reel-label">Reel 08</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="contact-strip">
+  <h3>Want content like this for your brand?</h3>
+  <a href="https://calendly.com/lontocjhon27/30min" target="_blank" rel="noopener">📅 Book a Free Call →</a>
+</div>
+
+<footer>
+  <a href="portfolio.html" class="footer-logo">J<span>.</span>Lontoc</a>
+  <p>© 2026 Jhon Rhovic B. Lontoc</p>
+</footer>
+
+<script>
+var currentCard=null;
+
+function playReel(placeholder){
+  var card=placeholder.closest('.reel-card');
+  var wrap=placeholder.closest('.phone-wrap');
+  var iframe=wrap.querySelector('.phone-iframe');
+  var stopBtn=wrap.querySelector('.stop-btn');
+
+  // Stop current if different
+  if(currentCard&&currentCard!==card){
+    stopReelByCard(currentCard);
+  }
+
+  // Load src
+  var src=card.dataset.src;
+  if(!iframe.src||iframe.src==='about:blank'||iframe.src===''){
+    iframe.src=src;
+  }
+  iframe.classList.add('active');
+  placeholder.style.display='none';
+  stopBtn.classList.add('visible');
+  wrap.classList.add('playing');
+  currentCard=card;
+}
+
+function stopReel(btn){
+  var wrap=btn.closest('.phone-wrap');
+  var card=btn.closest('.reel-card');
+  stopReelByCard(card);
+}
+
+function stopReelByCard(card){
+  var wrap=card.querySelector('.phone-wrap');
+  var iframe=card.querySelector('.phone-iframe');
+  var placeholder=card.querySelector('.phone-placeholder');
+  var stopBtn=card.querySelector('.stop-btn');
+  // Reset iframe src to stop video
+  iframe.src='';
+  iframe.classList.remove('active');
+  placeholder.style.display='';
+  stopBtn.classList.remove('visible');
+  wrap.classList.remove('playing');
+  if(currentCard===card)currentCard=null;
+}
+</script>
+</body>
+</html>
