@@ -597,7 +597,14 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
 .ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-@media(max-width:768px){.ham{display:flex}}
+@media(max-width:900px){.ham{display:flex}}
+
+/* JUMP CHIPS */
+.jump-chips{display:flex;gap:8px;overflow-x:auto;padding:24px 48px 4px;margin:0 auto;max-width:1200px;scrollbar-width:none;-ms-overflow-style:none}
+.jump-chips::-webkit-scrollbar{display:none}
+.jump-chip{flex-shrink:0;background:var(--surface2);color:var(--ink2);font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-family:var(--fh);font-weight:900;padding:9px 16px;border-radius:20px;border:1px solid var(--border2);text-decoration:none;white-space:nowrap;transition:all .2s}
+.jump-chip:hover{color:var(--ink);border-color:var(--accent);background:var(--surface)}
+@media(max-width:700px){.jump-chips{padding:18px 20px 4px}}
 .mob-nav{display:none;position:fixed;top:56px;left:0;right:0;background:rgba(9,8,10,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:999;padding:8px 0 16px;flex-direction:column}
 .mob-nav.open{display:flex}
 .mob-nav a{padding:14px 24px;font-size:13px;font-family:var(--fh);font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--border);transition:color .2s}
@@ -841,6 +848,17 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
   <div class="sb-item rv d2"><div class="sb-n"><em>21</em>×</div><div class="sb-l">ROAS — WE Campaign</div></div>
 </div>
 
+<!-- JUMP CHIPS -->
+<div class="jump-chips">
+  <a class="jump-chip" href="#showreel">Work</a>
+  <a class="jump-chip" href="#ghl">Services</a>
+  <a class="jump-chip" href="#case">Results</a>
+  <a class="jump-chip" href="#strategy">Process</a>
+  <a class="jump-chip" href="#about">About</a>
+  <a class="jump-chip" href="#why">Reviews</a>
+  <a class="jump-chip" href="#contact">Contact</a>
+</div>
+
 <!-- SHOWREEL -->
 <section class="showreel" id="showreel">
   <div class="showreel-head rv">
@@ -884,8 +902,8 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
         </div>
         <div class="wpc-body">
           <div class="wpc-num">01 · Campaign</div>
-          <div class="wpc-h">$191 In.<br>$4,216 Back.</div>
-          <div class="wpc-sub">21× ROAS · 68 Leads · 47% Show-up</div>
+          <div class="wpc-h">$1,194 In.<br>$25,824 Back.</div>
+          <div class="wpc-sub">21.6× ROAS · 193 Leads · $6.18 CPL</div>
           <div class="wpc-desc">Full Facebook → Webinar → Enrollment funnel, built and managed end to end.</div>
           <a class="wpc-cta" href="#campaign" onclick="navigate('campaign');return false">View Campaign →</a>
         </div>
@@ -1091,39 +1109,6 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
 </section>
 
 <!-- PROFICIENCY TOOLS -->
-<section class="sw" id="proficiency-tools" style="background:var(--bg);border-top:1px solid var(--border)">
-  <div class="sl rv"><span>·</span>Tools I work in</div>
-  <div class="rv" style="margin-bottom:52px">
-    <h2 class="sh">The stack I build,<br>connect, and <em>run</em>.</h2>
-  </div>
-  <div class="prof-grid rv d1">
-    <div class="prof-item">
-      <div class="prof-name">Zapier Automation</div>
-      <div class="prof-screen">
-        <img src="images/tool-zapier.png" alt="Zapier screenshot" loading="lazy">
-      </div>
-    </div>
-    <div class="prof-item">
-      <div class="prof-name">WordPress Website</div>
-      <div class="prof-screen">
-        <img src="images/tool-wordpress.png" alt="WordPress screenshot" loading="lazy">
-      </div>
-    </div>
-    <div class="prof-item">
-      <div class="prof-name">Skool Portal</div>
-      <div class="prof-screen">
-        <img src="images/tool-skool.png" alt="Skool screenshot" loading="lazy">
-      </div>
-    </div>
-    <div class="prof-item">
-      <div class="prof-name">GoHighLevel Automation</div>
-      <div class="prof-screen">
-        <img src="images/tool-ghl.png" alt="GHL Automation screenshot" loading="lazy">
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- IDENTITY -->
 <section id="identity" style="background:var(--bg);padding:100px 48px;position:relative;overflow:hidden;z-index:2">
   <div class="id-bg" aria-hidden="true">AUTOMATE</div>
@@ -1301,6 +1286,34 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
   <div class="rv" style="margin-bottom:44px;max-width:660px">
     <h2 class="sh">The stack I build,<br>connect, and <em>run</em>.</h2>
   </div>
+  <div class="rv" style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-family:var(--fh);font-weight:900;margin-bottom:16px">In Action</div>
+  <div class="prof-grid rv d1" style="margin-bottom:52px">
+    <div class="prof-item">
+      <div class="prof-name">Zapier Automation</div>
+      <div class="prof-screen">
+        <img src="images/tool-zapier.png" alt="Zapier screenshot" loading="lazy">
+      </div>
+    </div>
+    <div class="prof-item">
+      <div class="prof-name">WordPress Website</div>
+      <div class="prof-screen">
+        <img src="images/tool-wordpress.png" alt="WordPress screenshot" loading="lazy">
+      </div>
+    </div>
+    <div class="prof-item">
+      <div class="prof-name">Skool Portal</div>
+      <div class="prof-screen">
+        <img src="images/tool-skool.png" alt="Skool screenshot" loading="lazy">
+      </div>
+    </div>
+    <div class="prof-item">
+      <div class="prof-name">GoHighLevel Automation</div>
+      <div class="prof-screen">
+        <img src="images/tool-ghl.png" alt="GHL Automation screenshot" loading="lazy">
+      </div>
+    </div>
+  </div>
+  <div class="rv" style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-family:var(--fh);font-weight:900;margin-bottom:16px">Full Toolkit</div>
   <div class="tools-grid rv">
     <div class="tool-col"><h4>Automation &amp; CRM</h4><ul><li>GoHighLevel (GHL)</li><li>Zapier</li><li>n8n</li><li>ManyChat</li></ul></div>
     <div class="tool-col"><h4>Insurance &amp; Agency</h4><ul><li>Agency Matrix</li><li>IVANS</li><li>ACORD / PDF Filler</li><li>IPFS · TAPCO · Ascendant</li></ul></div>
@@ -1452,7 +1465,7 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
   <button class="pg-back" onclick="navigate('home')">Home</button>
   <div class="pg-bread">Home <span>/ Campaign</span></div>
   <h1 class="pg-title">Featured <em>Campaign</em></h1>
-  <p class="pg-sub">WE Management Services — June 2026. One Facebook campaign, one live webinar, full automated funnel built end to end.</p>
+  <p class="pg-sub">WE Management Services — live, updated Aug 10, 2026. One Facebook campaign, one live webinar, full automated funnel built end to end.</p>
 </div>
 
 
@@ -1461,13 +1474,35 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
 ══════════════════════════════════ -->
 <section id="campaign">
   <div class="campaign-header rv" style="text-align:center;padding:100px 24px 60px">
-    <div class="sl" style="justify-content:center;margin-bottom:16px"><span>·</span>Featured Campaign · WE Management Services · June 17, 2026</div>
-    <h2 class="sh" style="font-size:clamp(50px,9vw,110px)">$191 in.<br><em>$4,025</em> back.</h2>
+    <div class="sl" style="justify-content:center;margin-bottom:16px"><span>·</span>Featured Campaign · WE Management Services · Live — updated Aug 10, 2026</div>
+    <h2 class="sh" style="font-size:clamp(50px,9vw,110px)">$1,194 in.<br><em>$24,630</em> back.</h2>
     <p style="color:var(--ink2);font-size:15px;margin-top:16px;max-width:420px;margin-left:auto;margin-right:auto">One Facebook campaign. One live webinar. Full automated funnel — built end to end.</p>
   </div>
 
+  <!-- JUMP CHIPS -->
+  <div class="jump-chips" style="justify-content:center">
+    <a class="jump-chip" href="#ad-creative">Ad Creative</a>
+    <a class="jump-chip" href="#funnel-steps">Funnel</a>
+    <a class="jump-chip" href="#live-page">Live Page</a>
+    <a class="jump-chip" href="#proof">Proof</a>
+    <a class="jump-chip" href="#results">Results</a>
+  </div>
+
+  <!-- AD CREATIVE -->
+  <div class="rv" id="ad-creative" style="max-width:420px;margin:0 auto 60px;padding:0 24px;text-align:center">
+    <div style="font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-family:var(--fh);font-weight:900;margin-bottom:16px">The Ad Creative</div>
+    <div class="phone-mock" style="margin:0 auto">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <video src="videos/roundtree-ad-creative.mp4" controls playsinline preload="none" style="width:100%;height:100%;object-fit:cover"></video>
+      </div>
+      <div class="phone-home"></div>
+    </div>
+    <p style="color:var(--ink2);font-size:12px;margin-top:16px">The actual Facebook/Instagram ad running for Roundtree Masterclass.</p>
+  </div>
+
   <!-- FUNNEL CAROUSEL -->
-  <div style="padding:0 0 48px">
+  <div id="funnel-steps" style="padding:0 0 48px">
     <div class="sl rv d1" style="justify-content:center;margin-bottom:24px"><span>·</span>Full funnel — step by step</div>
 
     <div class="fcarousel-stage" id="fcStage">
@@ -1530,12 +1565,12 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
 
       <div class="fcarousel-slide s-far" data-fi="5">
         <div class="fcard result">
-          <div class="fcard-num" style="color:var(--gold)">Result</div>
+          <div class="fcard-num" style="color:var(--gold)">Result — Launch Month</div>
           <div class="fcard-icon">💰</div>
           <h4 style="color:var(--gold)">Total Return</h4>
           <div class="fcard-big gold">$4,216</div>
           <div class="fcard-sub">21× ROAS</div>
-          <div class="fcard-note" style="color:var(--gold);border-color:rgba(232,200,122,.3)">$4,025 net profit</div>
+          <div class="fcard-note" style="color:var(--gold);border-color:rgba(232,200,122,.3)">$4,025 net profit · see current totals below</div>
         </div>
       </div>
 
@@ -1557,7 +1592,7 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
   </div>
 
   <!-- LIVE OPT-IN PAGE -->
-  <div class="rv" style="max-width:680px;margin:0 auto 60px;padding:0 24px;text-align:center">
+  <div class="rv" id="live-page" style="max-width:680px;margin:0 auto 60px;padding:0 24px;text-align:center">
     <div style="font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-family:var(--fh);font-weight:900;margin-bottom:16px">02 · Live Opt-In Page Preview</div>
           <div class="laptop-device">
             <div class="laptop-lid">
@@ -1573,10 +1608,10 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
   </div>
 
   <!-- PROOF SCREENSHOTS -->
-  <div class="proof-section">
+  <div class="proof-section" id="proof">
     <div class="proof-title-row rv">
       <h3 class="proof-title">Real Transactions. <em>Real Sales.</em></h3>
-      <span style="font-size:11px;color:var(--ink3)">GoHighLevel · Stripe · Slack — automated notifications</span>
+      <span style="font-size:11px;color:var(--ink3)">GoHighLevel · Stripe · Slack · Meta Ads — real dashboards, real numbers</span>
     </div>
     <div class="proof-grid rv">
 
@@ -1631,29 +1666,29 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
     <div class="proof-grid-extra rv d1">
 
       <div class="proof-card">
-        <div class="proof-label">Automated Team Alert — Slack</div>
+        <div class="proof-label">Live Campaign — Meta Ads Manager</div>
         <div class="browser-wrap">
           <div class="browser-bar">
             <div class="browser-dots"><span class="bd-r"></span><span class="bd-y"></span><span class="bd-g"></span></div>
-            <div class="browser-url">Slack — automated notification</div>
+            <div class="browser-url">business.facebook.com / adsmanager / campaigns</div>
           </div>
           <div class="browser-screen" id="bs4">
-            <img src="images/reels-preview.png" alt="Slack auto notification" onerror="this.parentElement.classList.add('err-state')">
-            <div class="browser-fallback"><div style="font-size:28px">⚡</div><div style="font-size:11px;color:rgba(255,255,255,.4)">Automated alert</div></div>
+            <img src="images/roundtree-campaign-stats.png" alt="Meta Ads campaign performance" onerror="this.parentElement.classList.add('err-state')">
+            <div class="browser-fallback"><div style="font-size:28px">📊</div><div style="font-size:11px;color:rgba(255,255,255,.4)">Live campaign performance</div></div>
           </div>
         </div>
       </div>
 
       <div class="proof-card">
-        <div class="proof-label">High-Value Sale Result</div>
+        <div class="proof-label">Stripe Transactions — Aug 2026 (customer names blurred)</div>
         <div class="browser-wrap">
           <div class="browser-bar">
             <div class="browser-dots"><span class="bd-r"></span><span class="bd-y"></span><span class="bd-g"></span></div>
-            <div class="browser-url">Payment confirmation</div>
+            <div class="browser-url">dashboard.stripe.com / payments</div>
           </div>
           <div class="browser-screen" id="bs5">
-            <img src="images/proof-3.png" alt="High pay result" onerror="this.parentElement.classList.add('err-state')">
-            <div class="browser-fallback"><div style="font-size:28px">🏆</div><div style="font-size:11px;color:rgba(255,255,255,.4)">High-value sale</div></div>
+            <img src="images/roundtree-transactions.png" alt="Stripe transactions, customer names blurred for privacy" onerror="this.parentElement.classList.add('err-state')">
+            <div class="browser-fallback"><div style="font-size:28px">💳</div><div style="font-size:11px;color:rgba(255,255,255,.4)">Live transactions</div></div>
           </div>
         </div>
       </div>
@@ -1661,12 +1696,12 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
     </div>
 
     <!-- Final result numbers -->
-    <div class="result-strip" style="margin-top:48px;padding:0">
+    <div class="result-strip" id="results" style="margin-top:48px;padding:0">
       <div class="result-stats-grid rv d2">
-        <div class="rs-n" style="background:var(--bg);padding:32px 16px;text-align:center;border:1px solid var(--border)"><div class="rs-big gold">$4,216</div><div class="rs-lbl">Total revenue</div></div>
-        <div class="rs-n" style="background:var(--bg);padding:32px 16px;text-align:center;border:1px solid var(--border)"><div class="rs-big green">21×</div><div class="rs-lbl">ROAS</div></div>
-        <div class="rs-n" style="background:var(--bg);padding:32px 16px;text-align:center;border:1px solid var(--border)"><div class="rs-big accent">$191</div><div class="rs-lbl">Ad spend</div></div>
-        <div class="rs-n" style="background:var(--bg);padding:32px 16px;text-align:center;border:1px solid var(--border)"><div class="rs-big" style="color:var(--ink)">47%</div><div class="rs-lbl">Show-up rate</div></div>
+        <div class="rs-n" style="background:var(--bg);padding:32px 16px;text-align:center;border:1px solid var(--border)"><div class="rs-big gold">$25,824</div><div class="rs-lbl">Total revenue</div></div>
+        <div class="rs-n" style="background:var(--bg);padding:32px 16px;text-align:center;border:1px solid var(--border)"><div class="rs-big green">21.6×</div><div class="rs-lbl">ROAS</div></div>
+        <div class="rs-n" style="background:var(--bg);padding:32px 16px;text-align:center;border:1px solid var(--border)"><div class="rs-big accent">$1,193.68</div><div class="rs-lbl">Ad spend</div></div>
+        <div class="rs-n" style="background:var(--bg);padding:32px 16px;text-align:center;border:1px solid var(--border)"><div class="rs-big" style="color:var(--ink)">193</div><div class="rs-lbl">Leads generated</div></div>
       </div>
     </div>
 
