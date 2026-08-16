@@ -444,8 +444,14 @@ nav.solid{padding:14px 48px;background:rgba(9,8,10,.97);border-bottom:1px solid 
 @media(max-width:600px){.modal-box{padding:28px 20px}}
 
 /* FOOTER */
-footer{background:var(--bg2);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
-@media(max-width:900px){footer{flex-direction:column;gap:12px;padding:20px;text-align:center}}
+footer{background:var(--bg2);padding:28px 48px;border-top:1px solid var(--border)}
+@media(max-width:900px){footer{padding:20px;text-align:center}}
+.footer-links-row{display:flex;flex-wrap:wrap;gap:10px 22px;padding-bottom:20px;margin-bottom:16px;border-bottom:1px solid var(--border)}
+@media(max-width:900px){.footer-links-row{justify-content:center}}
+.footer-links-row a{font-size:9px;color:var(--ink3);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;font-family:var(--fh);font-weight:900;transition:color .2s}
+.footer-links-row a:hover{color:var(--accent)}
+.footer-bottom-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+@media(max-width:900px){.footer-bottom-row{flex-direction:column;gap:12px}}
 footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;letter-spacing:.06em;text-transform:uppercase}
 .fl{display:flex;gap:22px}
 .fl a{font-size:9px;color:var(--ink3);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .25s;font-family:var(--fh);font-weight:900}
@@ -789,6 +795,7 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
     <a href="#pages" data-page="pages" onclick="navigate('pages');return false"><span class="nl" data-text="Pages">Pages</span></a>
     <a href="#reels" data-page="reels" onclick="navigate('reels');return false"><span class="nl" data-text="Reels">Reels</span></a>
     <a href="portfolio-landing.html"><span class="nl" data-text="Portfolio">Portfolio</span></a>
+    <a href="/services"><span class="nl" data-text="Services">Services</span></a>
   </div>
   <a href="https://calendly.com/lontocjhon27/30min?month=2026-06" target="_blank" rel="noopener" class="nav-cta gold-cta">Book a Call</a>
   <button class="ham" id="hamBtn" onclick="toggleMobNav()" aria-label="Menu" aria-expanded="false">
@@ -801,6 +808,7 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
   <a href="#pages" data-page="pages" onclick="navigate('pages');toggleMobNav();return false">Pages</a>
   <a href="#reels" data-page="reels" onclick="navigate('reels');toggleMobNav();return false">Reels</a>
   <a href="portfolio-landing.html">Portfolio</a>
+  <a href="/services">Services</a>
   <a href="https://calendly.com/lontocjhon27/30min?month=2026-06" target="_blank" rel="noopener" class="mob-book">Book a Call ↗</a>
 </div>
 
@@ -2005,11 +2013,26 @@ footer p{font-size:9px;color:var(--ink3);font-family:var(--fh);font-weight:900;l
 </div>
 
 <footer>
-  <p>© 2026 Jhon Rhovic Lontoc · Philippines</p>
-  <div class="fl">
-    <a href="#" target="_blank">Instagram</a>
-    <a href="#" target="_blank">LinkedIn</a>
-    <a href="mailto:lontocjhon27@gmail.com">Email</a>
+  <div class="footer-links-row">
+    <a href="/services">Services</a>
+    <a href="/gohighlevel-expert">GoHighLevel Expert</a>
+    <a href="/automation">Automation</a>
+    <a href="/digital-marketing">Digital Marketing</a>
+    <a href="/bilingual-virtual-assistant">Bilingual VA</a>
+    <a href="/social-media-management">Social Media</a>
+    <a href="/customer-support">Customer Support</a>
+    <a href="/case-studies">Case Studies</a>
+    <a href="/about">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="/contact">Contact</a>
+  </div>
+  <div class="footer-bottom-row">
+    <p>© 2026 Jhon Rhovic Lontoc · Philippines</p>
+    <div class="fl">
+      <a href="#" target="_blank">Instagram</a>
+      <a href="#" target="_blank">LinkedIn</a>
+      <a href="mailto:lontocjhon27@gmail.com">Email</a>
+    </div>
   </div>
 </footer>
 
